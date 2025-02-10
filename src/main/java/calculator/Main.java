@@ -22,6 +22,16 @@ public class Main {
                     sbuf.append(expressionArray[i++]);
                 values.push(Integer.parseInt(sbuf.toString()));
                 i--;
+            } else if (expressionArray[i] == '(') {
+                ops.push(expressionArray[i]);
+            } else if (expressionArray[i] == ')') {
+                while (ops.peek() != '(')
+                    values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+                ops.pop();
+            } else if (expressionArray[i] == '+' || expressionArray[i] == '-' || expressionArray[i] == '*' || expressionArray[i] == '/') {
+                while (!ops.empty() && checkPrecedence(expressionArray[i], ops.peek()))
+                    values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+                ops.push(expressionArray[i]);
             }
 
 
