@@ -1,47 +1,81 @@
 package calculator;
 import java.util.Scanner;
+import java.util.Stack;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Calculator");
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Enter value 1");
-        int var1 = in.nextInt();
-        System.out.println("Enter value 2");
-        int var2 = in.nextInt();
+    public static int evaluate(String expression){
+        char[] expressionArray = expression.toCharArray();
 
-        System.out.println("Enter the Operator");
-        char op = in.next().charAt(0);
+        Stack<Integer> values = new Stack<>();
+        Stack<Character> ops = new Stack<>();
 
-        int result=0;
+        for(int i=0; i<expressionArray.length; i++){
+
+            if(expressionArray[i]==' ') continue;
+
+            if(Character.isDigit(expressionArray[i])){
+                StringBuffer sbuf = new StringBuffer();
+                while (i < expressionArray.length && Character.isDigit(expressionArray[i]))
+                    sbuf.append(expressionArray[i++]);
+                values.push(Integer.parseInt(sbuf.toString()));
+                i--;
+            } else if (expressionArray[i] == '(') {
+                ops.push(expressionArray[i]);
+            } else if (expressionArray[i] == ')') {
+                while (ops.peek() != '(')
+                    values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+                ops.pop();
+            } else if (expressionArray[i] == '+' || expressionArray[i] == '-' || expressionArray[i] == '*' || expressionArray[i] == '/') {
+                while (!ops.empty() && checkPrecedence(expressionArray[i], ops.peek()))
+                    values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+                ops.push(expressionArray[i]);
+            }
+
+        }
+        while (!ops.empty())
+            values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+
+        return values.pop();
+
+    }
+
+    public static int applyOp(char op, int b, int a) {
         switch (op) {
-            case '+':
-                result = var1 + var2;
-                break;
-
-            case '-':
-                result = var1 - var2;
-                break;
-            case '*':
-                result = var1 * var2;
-                break;
-
+            case '+': return a + b;
+            case '-': return a - b;
+            case '*': return a * b;
             case '/':
-                if (var2 != 0) {
-                    result = var1 / var2;
-                } else {
-                    System.out.println("Division by zero is not allowed");
-                    return;
-                }
-                break;
+                if (b == 0) throw new UnsupportedOperationException("Cannot divide by zero");
+                return a / b;
+        }
+        return 0;
+    }
+
+    public static boolean checkPrecedence(char op1, char op2) {
+        if (op2 == '(' || op2 == ')') return false;
+        if ((op1 == '*' || op1 == '/') && (op2 == '+' || op2 == '-')) return false;
+        return true;
+    }
+
+
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the expression");
+
+        String expression = in.nextLine();
+
+        try {
+            int result = evaluate(expression);
+            System.out.println("Result: " + result);
+        } catch (Exception e) {
+            System.out.println("Invalid expression! " + e.getMessage());
         }
 
-        System.out.println("Result" + result);
-
         in.close();
-
 
     }
 }
