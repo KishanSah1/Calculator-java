@@ -34,9 +34,10 @@ public class Main {
                 ops.push(expressionArray[i]);
             }
 
-
-
         }
+        while (!ops.empty())
+            values.push(applyOp(ops.pop(), values.pop(), values.pop()));
+
         return values.pop();
 
     }
