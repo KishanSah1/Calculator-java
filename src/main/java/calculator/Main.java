@@ -37,6 +37,7 @@ public class Main {
 
 
         }
+        return values.pop();
 
     }
 
@@ -61,6 +62,19 @@ public class Main {
 
 
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the expression");
+
+        String expression = in.nextLine();
+
+        try {
+            int result = evaluate(expression);
+            System.out.println("Result: " + result);
+        } catch (Exception e) {
+            System.out.println("Invalid expression! " + e.getMessage());
+        }
+
+        in.close();
 
     }
 }
