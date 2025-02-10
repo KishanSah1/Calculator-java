@@ -9,6 +9,8 @@ Code Output for various example expression
 
 ![Screenshot 2025-02-10 133558](https://github.com/user-attachments/assets/fbf12b3d-bbd4-4947-a179-e58c5b6c0442)
 
+![Screenshot 2025-02-10 133645](https://github.com/user-attachments/assets/d6fe8d62-59df-43a4-802f-c47218db7d7b)
+
 
 ![Screenshot 2025-02-10 133708](https://github.com/user-attachments/assets/4080539f-0bdd-4305-83e5-691a16b36592)
 
