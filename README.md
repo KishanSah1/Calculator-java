@@ -1,5 +1,4 @@
-Used stack for the problem of expression evaluation, made three function one is the evaluate funtion where the main evalaution takes place it uses the funtions applyOp 
-and checkPrecedence for applying the unit operation and checking the precedence of the operators respectively.
+Used stack for the problem of expression evaluation, made three function one is the evaluate funtion where the main evalaution takes place it uses the funtions applyOp and checkPrecedence for applying the unit operation and checking the precedence of the operators respectively.
 
 Code Output for various example expression
 
@@ -19,9 +18,6 @@ Code Output for various example expression
 
 
 ![Screenshot 2025-02-10 133812](https://github.com/user-attachments/assets/31444de6-5003-499c-8716-c91261c8fad0)
-
-
-![Screenshot 2025-02-10 133812](https://github.com/user-attachments/assets/801753cf-3660-4f32-8632-d1a89af18316)
 
 
 ![Screenshot 2025-02-10 133932](https://github.com/user-attachments/assets/81d9f352-2bda-4a34-9297-41e63fd2a966)
