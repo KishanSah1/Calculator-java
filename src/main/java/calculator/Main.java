@@ -14,6 +14,18 @@ public class Main {
 
         for(int i=0; i<expressionArray.length; i++){
 
+            if(expressionArray[i]==' ') continue;
+
+            if(Character.isDigit(expressionArray[i])){
+                StringBuffer sbuf = new StringBuffer();
+                while (i < expressionArray.length && Character.isDigit(expressionArray[i]))
+                    sbuf.append(expressionArray[i++]);
+                values.push(Integer.parseInt(sbuf.toString()));
+                i--;
+            }
+
+
+
         }
 
     }
